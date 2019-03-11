@@ -1,0 +1,11 @@
+﻿@model  Loan //lo hago fuertemente tipado al modelo para evitar errores en los atributos
+
+@{
+    ViewData["Title"] = "Infromación Préstamo";
+}
+
+<h1>Préstamo</h1>
+<h2>Nombre: @Model.Nombre</h2>
+<p><strong>Año de fundación: @Model.AñoFundacion</strong></p>
+
+<p><i>@ViewBag.CosaDinamica</i></p>
