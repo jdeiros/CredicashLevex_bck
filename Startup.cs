@@ -31,7 +31,10 @@ namespace MvcPicashWeb
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            //con esto ya puedo agregar una base de datos en memoria, la llame testDB (es para pruebas)
+            /* agrego un nuevo servicio de base de datos a mi aplicacion
+             * mapeamos un EscuelaContext en un servicio
+             * con esto ya puedo agregar una base de datos en memoria, la llame testDB (es para pruebas)
+             */
             services.AddDbContext<EscuelaContext>(
                     options => options.UseInMemoryDatabase(databaseName: "testDB")
                 );

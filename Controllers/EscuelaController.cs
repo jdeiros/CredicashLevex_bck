@@ -9,18 +9,10 @@ namespace MvcPicashWeb.Controllers
 {
     public class EscuelaController : Controller
     {
-        private EscuelaContext _context;
+        
 
         public IActionResult Index()
         {
-
-            //var escuela = new Escuela
-            //{
-            //    AñoDeCreación = 2005,
-            //    UniqueId = Guid.NewGuid().ToString(),
-            //    Nombre = "platzi school"
-            //};
-
             /*
              * bolsa de cosas dinamicas, es lo mismo que ViewData["CosaDinamica"]
              * son distintas formas de accedera a info extra que le mando desde aca
@@ -32,6 +24,7 @@ namespace MvcPicashWeb.Controllers
             return View(escuela);
         }
 
+        private EscuelaContext _context;
         public EscuelaController(EscuelaContext context)
         {
             _context = context;

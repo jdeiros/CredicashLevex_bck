@@ -10,11 +10,9 @@ namespace MvcPicashWeb.Models
 
         public string Pais { get; set; }
         public string Ciudad { get; set; }
-
-        public string Dirección { get; set; }
-
         public TiposEscuela TipoEscuela { get; set; }
         public List<Curso> Cursos { get; set; }
+        public string Direccion { get; set; }
 
         public Escuela(string nombre, int año) => (Nombre, AñoDeCreación) = (nombre, año);
 
