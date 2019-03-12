@@ -2,17 +2,13 @@
 
 @{
     ViewData["Title"] = "Información Asignatura";
+    Layout = "Simple";
 }
 
 <h1>@ViewData["Title"] </h1>
 
 <strong>Desde la vista parcial</strong>
-
-@foreach(var asignatura in Model)
-{
-    <partial name="ObjetoEscuelaSimple" model="asignatura" />
-}
-
+<partial name="ListaObjetoEscuela" model="Model" />
 
 
 <p><i>@ViewBag.Fecha</i></p>
