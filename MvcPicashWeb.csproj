@@ -13,6 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Curso\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Curso\MultiCurso.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Alumno\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
