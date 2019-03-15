@@ -6,7 +6,8 @@ namespace MvcPicashWeb.Models
 {
     public class Curso:ObjetoEscuelaBase
     {
-        [Required]
+        [Required(ErrorMessage = "El nombre del Curso es requerido")]
+        [StringLength(5)]
         public override string Nombre { get => base.Nombre; set => base.Nombre = value; }
 
         public TiposJornada Jornada { get; set; }
@@ -15,6 +16,9 @@ namespace MvcPicashWeb.Models
         public List<Asignatura> Asignaturas { get; set; }
         public List<Alumno> Alumnos { get; set; }
 
+        [Display(Prompt ="Dirección de Correspondencia.", Name = "Address")]
+        [Required(ErrorMessage = "Se requiere incluir una dirección")]
+        [MinLength(10, ErrorMessage = "La longitud mínima de la direccion es de 10 caracteres.")]
         public string Dirección { get; set; }
 
         //Navegacion hacia su padre
