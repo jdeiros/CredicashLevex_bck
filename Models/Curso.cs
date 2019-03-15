@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace MvcPicashWeb.Models
 {
     public class Curso:ObjetoEscuelaBase
     {
+        [Required]
+        public override string Nombre { get => base.Nombre; set => base.Nombre = value; }
+
         public TiposJornada Jornada { get; set; }
         //navegacion hacia sus hijos
         //podemos hacer referencia a los hijos con listas

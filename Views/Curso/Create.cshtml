@@ -4,8 +4,26 @@
 }
 
 <h1>@ViewData["Title"] </h1>
-
+<div asp-validation-summary="All"></div>
 <form method="post">
+
+    <div>
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" />
+    </div>
+    <div>
+        <label asp-for="Dirección"></label>
+        <input asp-for="Dirección" />
+    </div>
+    <div>
+        <label asp-for="Jornada"></label>
+        @Html.DropDownList(
+         "Jornada", Html.GetEnumSelectList<TiposJornada>(),
+         "Seleccione una jornada",
+         new {@Class = "form-control"}
+       )
+        
+    </div>
     <input type="submit" />
 </form>
 
