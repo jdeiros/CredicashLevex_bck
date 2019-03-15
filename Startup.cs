@@ -35,8 +35,16 @@ namespace MvcPicashWeb
              * mapeamos un EscuelaContext en un servicio
              * con esto ya puedo agregar una base de datos en memoria, la llame testDB (es para pruebas)
              */
+            //services.AddDbContext<EscuelaContext>(
+            //        options => options.UseInMemoryDatabase(databaseName: "testDB")
+            //    );
+
+            string connString = ConfigurationExtensions
+                                            .GetConnectionString(this.Configuration,
+                                            "DefaultConnectionString");
+
             services.AddDbContext<EscuelaContext>(
-                    options => options.UseInMemoryDatabase(databaseName: "testDB")
+                    options => options.UseSqlServer(connString)
                 );
         }
 
