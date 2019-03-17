@@ -32,8 +32,8 @@ namespace MvcPicashWeb.Controllers
             return View("MultiAlumno", _context.Alumnos);
         }
 
-        private EscuelaContext _context;
-        public AlumnoController(EscuelaContext context)
+        private ApplicationDbContext _context;
+        public AlumnoController(ApplicationDbContext context)
         {
             _context = context;
         }

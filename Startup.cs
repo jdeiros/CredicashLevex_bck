@@ -35,17 +35,22 @@ namespace MvcPicashWeb
              * mapeamos un EscuelaContext en un servicio
              * con esto ya puedo agregar una base de datos en memoria, la llame testDB (es para pruebas)
              */
-            //services.AddDbContext<EscuelaContext>(
-            //        options => options.UseInMemoryDatabase(databaseName: "testDB")
-            //    );
+            services.AddDbContext<ApplicationDbContext>(
+                    options => options.UseInMemoryDatabase(databaseName: "testDB")
+                );
 
+            /* para trabajar con db *****************************************************
+             * 
+             * 
             string connString = ConfigurationExtensions
                                             .GetConnectionString(this.Configuration,
                                             "DefaultConnectionString");
 
-            services.AddDbContext<EscuelaContext>(
+            services.AddDbContext<ApplicationDbContext>(
                     options => options.UseSqlServer(connString)
                 );
+            
+             * para trabajar con db *********************************************************/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +74,7 @@ namespace MvcPicashWeb
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Escuela}/{action=Index}/{id?}");
             });
         }
     }

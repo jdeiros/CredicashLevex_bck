@@ -32,7 +32,7 @@ namespace MvcPicashWeb
                     /*Esto de recuperar el contexto de la base de datos puede fallar
                      * porque pueda que no tenga conexion a la db
                     */
-                    var context = services.GetRequiredService<EscuelaContext>();
+                    var context = services.GetRequiredService<ApplicationDbContext>();
                     context.Database.EnsureCreated();
                 }
                 catch (Exception ex)

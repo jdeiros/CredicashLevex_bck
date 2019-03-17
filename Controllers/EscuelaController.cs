@@ -24,8 +24,8 @@ namespace MvcPicashWeb.Controllers
             return View(escuela);
         }
 
-        private EscuelaContext _context;
-        public EscuelaController(EscuelaContext context)
+        private ApplicationDbContext _context;
+        public EscuelaController(ApplicationDbContext context)
         {
             _context = context;
         }

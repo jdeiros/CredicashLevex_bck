@@ -37,8 +37,8 @@ namespace MvcPicashWeb.Controllers
             return View("MultiAsignatura", _context.Asignaturas);
         }
 
-        private EscuelaContext _context;
-        public AsignaturaController(EscuelaContext context)
+        private ApplicationDbContext _context;
+        public AsignaturaController(ApplicationDbContext context)
         {
             _context = context;
         }

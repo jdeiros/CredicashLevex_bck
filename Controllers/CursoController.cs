@@ -61,8 +61,8 @@ namespace MvcPicashWeb.Controllers
             
         }
 
-        private EscuelaContext _context;
-        public CursoController(EscuelaContext context)
+        private ApplicationDbContext _context;
+        public CursoController(ApplicationDbContext context)
         {
             _context = context;
         }
