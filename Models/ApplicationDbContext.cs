@@ -14,9 +14,7 @@ namespace MvcPicashWeb.Models
         public DbSet<Alumno> Alumnos { get; set; }
         public DbSet<Curso> Cursos { get; set; }
         public DbSet<Evaluación> Evaluaciones { get; set; }
-        public DbSet<Recuperatorio> Recuperatorios { get; set; }
-
-
+        
         //picash
         public DbSet<Address> Addresses { get; set; }        
         public DbSet<Customer> Customers { get; set; }
