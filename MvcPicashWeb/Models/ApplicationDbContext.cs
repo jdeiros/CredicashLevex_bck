@@ -26,21 +26,18 @@ namespace MvcPicashWeb.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            
-
-            
-
-
             /******************************************************************/
             /************* Carga del sistema Picash ***************************/
 
-            var debtCollector = new DebtCollector();
-            debtCollector.Birthdate = Convert.ToDateTime("12/4/1980 12:10:15 PM", new CultureInfo("en-US"));
-            debtCollector.Id = Guid.NewGuid().ToString();
-            debtCollector.CellPhone = "+54 9 11 5521 3345";
-            debtCollector.Name = "Juan";
-            debtCollector.SurName = "Perez";
-            debtCollector.OptionalContact = "juanperez@perezcompany.com";
+            var debtCollector = new DebtCollector
+            {
+                Birthdate = Convert.ToDateTime("12/4/1980 12:10:15 PM", new CultureInfo("en-US")),
+                DebtCollectorId = Guid.NewGuid().ToString(),
+                CellPhone = "+54 9 11 5521 3345",
+                Name = "Juan",
+                SurName = "Perez",
+                OptionalContact = "juanperez@perezcompany.com"
+            };
 
             List<Route> routes = LoadRoutes(debtCollector);
             List<Customer> customers = LoadCustomers(routes);
@@ -67,7 +64,7 @@ namespace MvcPicashWeb.Models
                 completeList.Add(
                     new Address()
                     {
-                        Id = Guid.NewGuid().ToString(),
+                        AddressId = Guid.NewGuid().ToString(),
                         IsMain = true,
                         Description = $"{street[rndIndex1]} {number[rndIndex2]}"
                     }
@@ -100,13 +97,13 @@ namespace MvcPicashWeb.Models
                                from sn in surname
                                select new Customer
                                {
-                                   RouteId = route.Id,
+                                   RouteId = route.RouteId,
                                    Name = $"{n1} {n2}",
                                    SurName = $"{sn}",
-                                   Id = Guid.NewGuid().ToString()
+                                   CustomerId = Guid.NewGuid().ToString()
                                };
 
-            return customerList.OrderBy((cus) => cus.Id).Take(cant).ToList();
+            return customerList.OrderBy((cus) => cus.CustomerId).Take(cant).ToList();
         }
         /*
         private List<Customer> LoadCustomers(List<Route> routes)
@@ -153,14 +150,14 @@ namespace MvcPicashWeb.Models
         {
             return new List<Route>(){
                         new Route() {
-                            Id = Guid.NewGuid().ToString(),
-                            DebtCollectorId = debtCollector.Id,
+                            RouteId = Guid.NewGuid().ToString(),
+                            DebtCollectorId = debtCollector.DebtCollectorId,
                             Code = "101"
                         },
-                        new Route() {Id = Guid.NewGuid().ToString(), DebtCollectorId = debtCollector.Id, Code = "201"},
-                        new Route() {Id = Guid.NewGuid().ToString(), DebtCollectorId = debtCollector.Id, Code = "301"},
-                        new Route() {Id = Guid.NewGuid().ToString(), DebtCollectorId = debtCollector.Id, Code = "401"},
-                        new Route() {Id = Guid.NewGuid().ToString(), DebtCollectorId = debtCollector.Id, Code = "501"},
+                        new Route() {RouteId = Guid.NewGuid().ToString(), DebtCollectorId = debtCollector.DebtCollectorId, Code = "201"},
+                        new Route() {RouteId = Guid.NewGuid().ToString(), DebtCollectorId = debtCollector.DebtCollectorId, Code = "301"},
+                        new Route() {RouteId = Guid.NewGuid().ToString(), DebtCollectorId = debtCollector.DebtCollectorId, Code = "401"},
+                        new Route() {RouteId = Guid.NewGuid().ToString(), DebtCollectorId = debtCollector.DebtCollectorId, Code = "501"},
             };
         }
 

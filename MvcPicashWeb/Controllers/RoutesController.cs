@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcPicashWeb.Models;
 using mvcPicash.Models;
 
-namespace MvcPicashWeb2.Controllers
+namespace MvcPicashWeb.Controllers
 {
     public class RoutesController : Controller
     {
@@ -36,7 +36,7 @@ namespace MvcPicashWeb2.Controllers
 
             var route = await _context.Routes
                 .Include(r => r.DebtCollector)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.RouteId == id);
             if (route == null)
             {
                 return NotFound();
@@ -48,7 +48,7 @@ namespace MvcPicashWeb2.Controllers
         // GET: Routes/Create
         public IActionResult Create()
         {
-            ViewData["DebtCollectorId"] = new SelectList(_context.DebtCollectors, "Id", "Id");
+            ViewData["DebtCollectorId"] = new SelectList(_context.DebtCollectors, "DebtCollectorId", "DebtCollectorId");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace MvcPicashWeb2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Code,Name,DebtCollectorId")] Route route)
+        public async Task<IActionResult> Create([Bind("RouteId,Code,Name,DebtCollectorId")] Route route)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace MvcPicashWeb2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DebtCollectorId"] = new SelectList(_context.DebtCollectors, "Id", "Id", route.DebtCollectorId);
+            ViewData["DebtCollectorId"] = new SelectList(_context.DebtCollectors, "DebtCollectorId", "DebtCollectorId", route.DebtCollectorId);
             return View(route);
         }
 
@@ -82,7 +82,7 @@ namespace MvcPicashWeb2.Controllers
             {
                 return NotFound();
             }
-            ViewData["DebtCollectorId"] = new SelectList(_context.DebtCollectors, "Id", "Id", route.DebtCollectorId);
+            ViewData["DebtCollectorId"] = new SelectList(_context.DebtCollectors, "DebtCollectorId", "DebtCollectorId", route.DebtCollectorId);
             return View(route);
         }
 
@@ -91,9 +91,9 @@ namespace MvcPicashWeb2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Code,Name,DebtCollectorId")] Route route)
+        public async Task<IActionResult> Edit(string id, [Bind("RouteId,Code,Name,DebtCollectorId")] Route route)
         {
-            if (id != route.Id)
+            if (id != route.RouteId)
             {
                 return NotFound();
             }
@@ -107,7 +107,7 @@ namespace MvcPicashWeb2.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RouteExists(route.Id))
+                    if (!RouteExists(route.RouteId))
                     {
                         return NotFound();
                     }
@@ -118,7 +118,7 @@ namespace MvcPicashWeb2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DebtCollectorId"] = new SelectList(_context.DebtCollectors, "Id", "Id", route.DebtCollectorId);
+            ViewData["DebtCollectorId"] = new SelectList(_context.DebtCollectors, "DebtCollectorId", "DebtCollectorId", route.DebtCollectorId);
             return View(route);
         }
 
@@ -132,7 +132,7 @@ namespace MvcPicashWeb2.Controllers
 
             var route = await _context.Routes
                 .Include(r => r.DebtCollector)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.RouteId == id);
             if (route == null)
             {
                 return NotFound();
@@ -154,7 +154,7 @@ namespace MvcPicashWeb2.Controllers
 
         private bool RouteExists(string id)
         {
-            return _context.Routes.Any(e => e.Id == id);
+            return _context.Routes.Any(e => e.RouteId == id);
         }
     }
 }

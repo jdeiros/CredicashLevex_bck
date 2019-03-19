@@ -7,7 +7,7 @@ namespace mvcPicash.Models
 {
     public class PaymentCommitment
     {
-        public string Id { get; set; }
+        public string PaymentCommitmentId { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }

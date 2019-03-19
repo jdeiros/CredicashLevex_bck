@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcPicashWeb.Models;
 using mvcPicash.Models;
 
-namespace MvcPicashWeb2.Controllers
+namespace MvcPicashWeb.Controllers
 {
     public class AddressesController : Controller
     {
@@ -34,7 +34,7 @@ namespace MvcPicashWeb2.Controllers
             }
 
             var address = await _context.Addresses
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.AddressId == id);
             if (address == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace MvcPicashWeb2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Description,Latitude,Longitude,IsMain")] Address address)
+        public async Task<IActionResult> Create([Bind("AddressId,Description,Latitude,Longitude,IsMain,CustomerId")] Address address)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace MvcPicashWeb2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Description,Latitude,Longitude,IsMain")] Address address)
+        public async Task<IActionResult> Edit(string id, [Bind("AddressId,Description,Latitude,Longitude,IsMain,CustomerId")] Address address)
         {
-            if (id != address.Id)
+            if (id != address.AddressId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace MvcPicashWeb2.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AddressExists(address.Id))
+                    if (!AddressExists(address.AddressId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace MvcPicashWeb2.Controllers
             }
 
             var address = await _context.Addresses
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.AddressId == id);
             if (address == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace MvcPicashWeb2.Controllers
 
         private bool AddressExists(string id)
         {
-            return _context.Addresses.Any(e => e.Id == id);
+            return _context.Addresses.Any(e => e.AddressId == id);
         }
     }
 }

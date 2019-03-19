@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,7 +34,7 @@ namespace MvcPicashWeb.Controllers
             }
 
             var debtCollector = await _context.DebtCollectors
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.DebtCollectorId == id);
             if (debtCollector == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace MvcPicashWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,SurName,Birthdate,CellPhone,OptionalContact")] DebtCollector debtCollector)
+        public async Task<IActionResult> Create([Bind("DebtCollectorId,Name,SurName,Birthdate,CellPhone,OptionalContact")] DebtCollector debtCollector)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace MvcPicashWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,SurName,Birthdate,CellPhone,OptionalContact")] DebtCollector debtCollector)
+        public async Task<IActionResult> Edit(string id, [Bind("DebtCollectorId,Name,SurName,Birthdate,CellPhone,OptionalContact")] DebtCollector debtCollector)
         {
-            if (id != debtCollector.Id)
+            if (id != debtCollector.DebtCollectorId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace MvcPicashWeb.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DebtCollectorExists(debtCollector.Id))
+                    if (!DebtCollectorExists(debtCollector.DebtCollectorId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace MvcPicashWeb.Controllers
             }
 
             var debtCollector = await _context.DebtCollectors
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.DebtCollectorId == id);
             if (debtCollector == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace MvcPicashWeb.Controllers
 
         private bool DebtCollectorExists(string id)
         {
-            return _context.DebtCollectors.Any(e => e.Id == id);
+            return _context.DebtCollectors.Any(e => e.DebtCollectorId == id);
         }
     }
 }

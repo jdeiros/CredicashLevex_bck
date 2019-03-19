@@ -36,7 +36,7 @@ namespace MvcPicashWeb.Controllers
 
             var customer = await _context.Customers
                 .Include(c => c.Route)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.CustomerId == id);
             if (customer == null)
             {
                 return NotFound();
@@ -48,7 +48,7 @@ namespace MvcPicashWeb.Controllers
         // GET: Customers/Create
         public IActionResult Create()
         {
-            ViewData["RouteId"] = new SelectList(_context.Routes, "Id", "Id");
+            ViewData["RouteId"] = new SelectList(_context.Routes, "RouteId", "RouteId");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace MvcPicashWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,SurName,Birthdate,CellPhone,OptionalContact,RouteId")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerId,Name,SurName,Birthdate,CellPhone,OptionalContact,RouteId")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace MvcPicashWeb.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RouteId"] = new SelectList(_context.Routes, "Id", "Id", customer.RouteId);
+            ViewData["RouteId"] = new SelectList(_context.Routes, "RouteId", "RouteId", customer.RouteId);
             return View(customer);
         }
 
@@ -82,7 +82,7 @@ namespace MvcPicashWeb.Controllers
             {
                 return NotFound();
             }
-            ViewData["RouteId"] = new SelectList(_context.Routes, "Id", "Id", customer.RouteId);
+            ViewData["RouteId"] = new SelectList(_context.Routes, "RouteId", "RouteId", customer.RouteId);
             return View(customer);
         }
 
@@ -91,9 +91,9 @@ namespace MvcPicashWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,SurName,Birthdate,CellPhone,OptionalContact,RouteId")] Customer customer)
+        public async Task<IActionResult> Edit(string id, [Bind("CustomerId,Name,SurName,Birthdate,CellPhone,OptionalContact,RouteId")] Customer customer)
         {
-            if (id != customer.Id)
+            if (id != customer.CustomerId)
             {
                 return NotFound();
             }
@@ -107,7 +107,7 @@ namespace MvcPicashWeb.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CustomerExists(customer.Id))
+                    if (!CustomerExists(customer.CustomerId))
                     {
                         return NotFound();
                     }
@@ -118,7 +118,7 @@ namespace MvcPicashWeb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RouteId"] = new SelectList(_context.Routes, "Id", "Id", customer.RouteId);
+            ViewData["RouteId"] = new SelectList(_context.Routes, "RouteId", "RouteId", customer.RouteId);
             return View(customer);
         }
 
@@ -132,7 +132,7 @@ namespace MvcPicashWeb.Controllers
 
             var customer = await _context.Customers
                 .Include(c => c.Route)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.CustomerId == id);
             if (customer == null)
             {
                 return NotFound();
@@ -154,7 +154,7 @@ namespace MvcPicashWeb.Controllers
 
         private bool CustomerExists(string id)
         {
-            return _context.Customers.Any(e => e.Id == id);
+            return _context.Customers.Any(e => e.CustomerId == id);
         }
     }
 }

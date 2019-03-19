@@ -7,7 +7,7 @@ namespace mvcPicash.Models
 {
     public class DebtCollector
     {
-        public string Id { get; set; }
+        public string DebtCollectorId { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
         public DateTime Birthdate { get; set; }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcPicashWeb.Models;
 using mvcPicash.Models;
 
-namespace MvcPicashWeb2.Controllers
+namespace MvcPicashWeb.Controllers
 {
     public class PaymentCommitmentsController : Controller
     {
@@ -36,7 +36,7 @@ namespace MvcPicashWeb2.Controllers
 
             var paymentCommitment = await _context.PaymentCommitments
                 .Include(p => p.Customer)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.PaymentCommitmentId == id);
             if (paymentCommitment == null)
             {
                 return NotFound();
@@ -48,7 +48,7 @@ namespace MvcPicashWeb2.Controllers
         // GET: PaymentCommitments/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace MvcPicashWeb2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CreationDate,DateFrom,DateTo,TotalAmmount,CustomerId,PaymentcommitmentStatus")] PaymentCommitment paymentCommitment)
+        public async Task<IActionResult> Create([Bind("PaymentCommitmentId,CreationDate,DateFrom,DateTo,TotalAmmount,CustomerId,PaymentcommitmentStatus")] PaymentCommitment paymentCommitment)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace MvcPicashWeb2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", paymentCommitment.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", paymentCommitment.CustomerId);
             return View(paymentCommitment);
         }
 
@@ -82,7 +82,7 @@ namespace MvcPicashWeb2.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", paymentCommitment.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", paymentCommitment.CustomerId);
             return View(paymentCommitment);
         }
 
@@ -91,9 +91,9 @@ namespace MvcPicashWeb2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,CreationDate,DateFrom,DateTo,TotalAmmount,CustomerId,PaymentcommitmentStatus")] PaymentCommitment paymentCommitment)
+        public async Task<IActionResult> Edit(string id, [Bind("PaymentCommitmentId,CreationDate,DateFrom,DateTo,TotalAmmount,CustomerId,PaymentcommitmentStatus")] PaymentCommitment paymentCommitment)
         {
-            if (id != paymentCommitment.Id)
+            if (id != paymentCommitment.PaymentCommitmentId)
             {
                 return NotFound();
             }
@@ -107,7 +107,7 @@ namespace MvcPicashWeb2.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PaymentCommitmentExists(paymentCommitment.Id))
+                    if (!PaymentCommitmentExists(paymentCommitment.PaymentCommitmentId))
                     {
                         return NotFound();
                     }
@@ -118,7 +118,7 @@ namespace MvcPicashWeb2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", paymentCommitment.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", paymentCommitment.CustomerId);
             return View(paymentCommitment);
         }
 
@@ -132,7 +132,7 @@ namespace MvcPicashWeb2.Controllers
 
             var paymentCommitment = await _context.PaymentCommitments
                 .Include(p => p.Customer)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.PaymentCommitmentId == id);
             if (paymentCommitment == null)
             {
                 return NotFound();
@@ -154,7 +154,7 @@ namespace MvcPicashWeb2.Controllers
 
         private bool PaymentCommitmentExists(string id)
         {
-            return _context.PaymentCommitments.Any(e => e.Id == id);
+            return _context.PaymentCommitments.Any(e => e.PaymentCommitmentId == id);
         }
     }
 }

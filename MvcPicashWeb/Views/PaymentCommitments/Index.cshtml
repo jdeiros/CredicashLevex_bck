@@ -49,15 +49,15 @@
                 @Html.DisplayFor(modelItem => item.TotalAmmount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.Id)
+                @Html.DisplayFor(modelItem => item.Customer.CustomerId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentcommitmentStatus)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.PaymentCommitmentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PaymentCommitmentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PaymentCommitmentId">Delete</a>
             </td>
         </tr>
 }

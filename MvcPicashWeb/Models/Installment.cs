@@ -7,7 +7,7 @@ namespace mvcPicash.Models
 {
     public class Installment
     {
-        public string Id { get; set; }
+        public string InstallmentId { get; set; }
         public string PaymentCommitmentId { get; set; }
         public PaymentCommitment PaymentCommitment { get; set; }
         public float Amount { get; set; }
