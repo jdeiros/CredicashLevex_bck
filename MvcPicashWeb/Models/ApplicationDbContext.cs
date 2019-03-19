@@ -8,8 +8,9 @@ using System.Linq;
 namespace MvcPicashWeb.Models
 {
     public class ApplicationDbContext : DbContext
-    {
-        public DbSet<Address> Addresses { get; set; }        
+    {        
+        //picash
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<DebtCollector> DebtCollectors { get; set; }
         public DbSet<Installment> Installments { get; set; }
@@ -25,17 +26,21 @@ namespace MvcPicashWeb.Models
         {
             base.OnModelCreating(modelBuilder);
 
+            
+
+            
+
+
+            /******************************************************************/
             /************* Carga del sistema Picash ***************************/
 
-            DebtCollector debtCollector = new DebtCollector
-            {
-                Birthdate = Convert.ToDateTime("12/4/1980 12:10:15 PM", new CultureInfo("en-US")),
-                Id = Guid.NewGuid().ToString(),
-                CellPhone = "+54 9 11 5521 3345",
-                Name = "Juan",
-                SurName = "Perez",
-                OptionalContact = "juanperez@perezcompany.com"
-            };
+            var debtCollector = new DebtCollector();
+            debtCollector.Birthdate = Convert.ToDateTime("12/4/1980 12:10:15 PM", new CultureInfo("en-US"));
+            debtCollector.Id = Guid.NewGuid().ToString();
+            debtCollector.CellPhone = "+54 9 11 5521 3345";
+            debtCollector.Name = "Juan";
+            debtCollector.SurName = "Perez";
+            debtCollector.OptionalContact = "juanperez@perezcompany.com";
 
             List<Route> routes = LoadRoutes(debtCollector);
             List<Customer> customers = LoadCustomers(routes);
@@ -49,7 +54,7 @@ namespace MvcPicashWeb.Models
 
         private List<Address> LoadAddresses(List<Customer> customers)
         {
-            string[] street = { "Rosales", "Marconi", "J. B. Justo", "Dorrego", "Gorriti", "Gaona", "Sourignes" };
+            string[] street = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolás" };
             string[] number = { "1243", "666", "895", "397", "1236", "1789", "2765" };
 
             Random rnd = new Random();
@@ -103,7 +108,47 @@ namespace MvcPicashWeb.Models
 
             return customerList.OrderBy((cus) => cus.Id).Take(cant).ToList();
         }
-      
+        /*
+        private List<Customer> LoadCustomers(List<Route> routes)
+        {
+            var completeList = new List<Customer>();
+            foreach (var route in routes)
+            {
+                var tmpList = new List<Customer> {
+                            new Customer{
+                                Id = Guid.NewGuid().ToString(),
+                                RouteId = route.Id,
+                                Name ="Federico",
+                                SurName = "Lopez",
+                                Birthdate = Convert.ToDateTime("12/5/1985 12:10:15 PM", new CultureInfo("en-US")),
+                                CellPhone = "+54 9 11 2626 5344",
+                                OptionalContact = "fedeLopez@outlook.com.ar"
+                            } ,
+                            new Customer{
+                                Id = Guid.NewGuid().ToString(),
+                                RouteId = route.Id,
+                                Name ="Roberto",
+                                SurName = "Salomone",
+                                Birthdate = Convert.ToDateTime("12/6/1983 12:10:15 PM", new CultureInfo("en-US")),
+                                CellPhone = "+54 9 11 2626 6666",
+                                OptionalContact = "robert@gmail.com.ar"
+                            } ,
+                            new Customer{
+                                Id = Guid.NewGuid().ToString(),
+                                RouteId = route.Id,
+                                Name ="Roberto",
+                                SurName = "Salomone",
+                                Birthdate = Convert.ToDateTime("12/6/1983 12:10:15 PM", new CultureInfo("en-US")),
+                                CellPhone = "+54 9 11 2626 6666",
+                                OptionalContact = "robert@gmail.com.ar"
+                            }
+
+                };
+                completeList.AddRange(tmpList);
+            }
+            return completeList;
+        }
+        */
         private List<Route> LoadRoutes(DebtCollector debtCollector)
         {
             return new List<Route>(){
@@ -117,6 +162,13 @@ namespace MvcPicashWeb.Models
                         new Route() {Id = Guid.NewGuid().ToString(), DebtCollectorId = debtCollector.Id, Code = "401"},
                         new Route() {Id = Guid.NewGuid().ToString(), DebtCollectorId = debtCollector.Id, Code = "501"},
             };
-        } 
+        }
+
+       
+
+       
+
+
+        
     }
 }

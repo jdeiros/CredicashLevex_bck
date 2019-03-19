@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcPicashWeb.Models;
 using mvcPicash.Models;
 
-namespace MvcPicashWeb2.Controllers
+namespace MvcPicashWeb.Controllers
 {
     public class CustomersController : Controller
     {

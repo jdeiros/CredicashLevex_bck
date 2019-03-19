@@ -12,6 +12,8 @@ namespace mvcPicash.Models
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public bool IsMain { get; set; }
+        public string CustomerId { get; set; }
+        Customer Customer { get; set; }
 
         public Address()
         {
