@@ -1,5 +1,3 @@
-using System;
-
 namespace MvcPicashWeb.Models
 {
     public class ErrorViewModel

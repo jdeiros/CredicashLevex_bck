@@ -39,23 +39,19 @@ namespace MvcPicashWeb
             /* agrego un nuevo servicio de base de datos a mi aplicacion
              * mapeamos un EscuelaContext en un servicio
              * con esto ya puedo agregar una base de datos en memoria, la llame testDB (es para pruebas)
-             */
+             *
+             *
             services.AddDbContext<ApplicationDbContext>(
                     options => options.UseInMemoryDatabase(databaseName: "testDB")
                 );
 
-    /* para trabajar con db *****************************************************
-     * 
-        
-            string connString = ConfigurationExtensions
-                                            .GetConnectionString(this.Configuration,
-                                            "DefaultConnectionString");
+           /* para trabajar con db *****************************************************
+            */ 
+            string connString = ConfigurationExtensions.GetConnectionString(Configuration,"DefaultConnectionString");
 
-            services.AddDbContext<ApplicationDbContext>(
-                    options => options.UseSqlServer(connString)
-                );
-            
-    /* para trabajar con db *********************************************************/
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connString));
+
+            /* para trabajar con db *********************************************************/
 
         }
 
@@ -81,7 +77,7 @@ namespace MvcPicashWeb
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=PaymentCommitments}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

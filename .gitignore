@@ -260,4 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 
-appsetting.Development.json
+# Datos de conexión a la base
+appsetting.json
